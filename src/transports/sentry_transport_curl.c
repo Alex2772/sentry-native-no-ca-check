@@ -214,6 +214,7 @@ sentry__curl_send_task(void *_envelope, void *_state)
     info.x_sentry_rate_limits = NULL;
     curl_easy_setopt(curl, CURLOPT_HEADERDATA, (void *)&info);
     curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, header_callback);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0);
 
     if (state->http_proxy) {
         curl_easy_setopt(curl, CURLOPT_PROXY, state->http_proxy);
