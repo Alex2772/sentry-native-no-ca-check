@@ -705,6 +705,13 @@ sentry_set_context(const char *key, sentry_value_t value)
 }
 
 void
+sentry_modify_context(const char *key, void(*callback)(sentry_value_t, void *userdata), void *userdata) {
+    SENTRY_WITH_SCOPE_MUT (scope) {
+	callback(sentry_value_get_by_key(scope->contexts, key), userdata);
+    }
+}
+
+void
 sentry_set_context_n(const char *key, size_t key_len, sentry_value_t value)
 {
     SENTRY_WITH_SCOPE_MUT (scope) {

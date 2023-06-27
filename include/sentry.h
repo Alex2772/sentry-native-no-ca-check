@@ -1401,6 +1401,9 @@ SENTRY_API void sentry_set_context(const char *key, sentry_value_t value);
 SENTRY_API void sentry_set_context_n(
     const char *key, size_t key_len, sentry_value_t value);
 
+
+SENTRY_API sentry_modify_context(const char *key, void(*callback)(sentry_value_t, void *userdata), void *userdata);
+
 /**
  * Removes the context object with the specified key.
  */
